@@ -3,11 +3,16 @@ from .models import Order, OrderItem
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    product = serializers.ReadOnlyField(source='product.title')
+    product_title = serializers.ReadOnlyField(source='product.title')
 
     class Meta:
         model = OrderItem
-        fields = ('product', 'quantity')
+        fields = ('product', 'quantity', 'product_title')
+    
+    def to_representation(self, instance):
+        repr = super().to_representation(instance)
+        repr.pop('product')
+        return repr
 
 
 class OrderSerializer(serializers.ModelSerializer):

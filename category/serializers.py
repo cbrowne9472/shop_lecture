@@ -15,3 +15,5 @@ class CategorySerializer(serializers.ModelSerializer):
         representation['products'] = ProductListSerializer(instance.products.all(), many=True).data
         return representation
 
+    
+

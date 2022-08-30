@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from product.models import Product
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from account.send_email import send_notification
 
 User = get_user_model()
 
@@ -26,6 +27,6 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-
-
+@receiver(post_save, sender=Order)
+def order_post_save(sender, instance, *args, **kwargs):
+    send_notification(instance.user, instance.id)

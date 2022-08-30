@@ -11,3 +11,25 @@ def send_confirmation_email(user):
         'johnsnowtest73@gmail.com',
         [to_email,],
         fail_silently=False)
+
+def send_reset_password(user):
+    code = user.activation_code
+    to_email = user.email
+    send_mail(
+        'Subject',
+        f'Your code for reset password: {code}',
+        'from@example.com',
+        [to_email,],
+        fail_silently=False
+    )
+
+
+def send_notification(user, id):
+    to_email = user.email
+    send_mail(
+        'Увежомление о создании заказа!!',
+        f'Вы создали заказ №{id}, ожидайте звонка!!',
+        'from@example.com',
+        [to_email,],
+        fail_silently=False
+    )

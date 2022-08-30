@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
+    'drf_yasg',
 
     # my_apps
     'product',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'category',
     'cart', # корзина фуфло
     'order',
+    'rating',
 ]
 
 MIDDLEWARE = [
