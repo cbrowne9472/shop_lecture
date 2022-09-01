@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-
+from .models import Contact
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import gettext_lazy as _
 
@@ -91,4 +91,10 @@ class RestorePasswordSerializer(serializers.Serializer):
         user.activation_code = ''
         user.save()
         return user
+
+
+class SpamViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
 
